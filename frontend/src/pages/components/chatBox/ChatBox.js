@@ -7,7 +7,8 @@ import ChatHistory from "../../../component/chatHistory/ChatHistory";
 import styleChat from "./styleChat.module.css";
 import io from "socket.io-client";
 
-const ENDPOINT = "http://localhost:5000";
+// const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://real-time-chat-mongodb.herokuapp.com/";
 var socket, selectedChatCompare;
 
 function ChatBox({ activeUser, active }) {

@@ -7,7 +7,6 @@ import RegisterUser from "./pages/auth/RegisterUser";
 export const localUser = JSON.parse(localStorage.getItem("chat-api"));
 function App() {
   const authUser = localUser;
-  console.log(authUser);
 
   return (
     <div className="App">
