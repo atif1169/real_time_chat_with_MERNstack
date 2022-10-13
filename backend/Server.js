@@ -6,6 +6,7 @@ const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+const path = require("path");
 const app = express();
 app.use(express.json()); // accept json data
 
@@ -53,11 +54,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// test api
-// app.get("/test", (req, res) => {
-//   return res.json({ Success: true, message: "Running Successfully" });
-// });
-
 //  User Routes
 app.use("/api/user", userRoutes);
 
@@ -66,6 +62,22 @@ app.use("/api/chat", chatRoutes);
 
 // Message Routes
 app.use("/api/message", messageRoutes);
+
+// --------------------------Development-----------------------
+const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
+  });
+} else {
+  // test api
+  app.get("/test", (req, res) => {
+    return res.json({ Success: true, message: "Running Successfully" });
+  });
+}
+// --------------------------Development-----------------------
 
 // Route Not found
 app.use(notFound);
