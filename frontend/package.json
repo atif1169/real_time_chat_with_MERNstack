@@ -38,5 +38,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://real-time-chat-mongodb.herokuapp.com"
+  "proxy": "https://corsproxyapi.herokuapp.com/https://real-time-chat-mongodb.herokuapp.com"
 }
