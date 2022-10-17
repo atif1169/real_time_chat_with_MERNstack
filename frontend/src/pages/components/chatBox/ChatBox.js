@@ -26,7 +26,7 @@ function ChatBox({ activeUser, active }) {
   // fetch messages function
   const fetchData = async () => {
     try {
-      const a = await axios.get(`http://localhost:5000/api/message/${active}`, {
+      const a = await axios.get(`/api/message/${active}`, {
         headers: {
           Authorization: `Bearer ${localUser?.token}`,
         },
@@ -67,7 +67,7 @@ function ChatBox({ activeUser, active }) {
       const { data } =
         messageTxt &&
         (await axios.post(
-          `http://localhost:5000/api/message/`,
+          `/api/message/`,
           { chatId: active, content: messageTxt },
           {
             headers: {

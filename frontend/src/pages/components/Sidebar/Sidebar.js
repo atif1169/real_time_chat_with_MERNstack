@@ -9,7 +9,7 @@ function Sidebar({ setActiveUser, active }) {
 
   const fetchData = async () => {
     try {
-      const a = await axios.get("http://localhost:5000/api/chat/", {
+      const a = await axios.get("/api/chat/", {
         headers: {
           Authorization: `Bearer ${localUser?.token}`,
         },

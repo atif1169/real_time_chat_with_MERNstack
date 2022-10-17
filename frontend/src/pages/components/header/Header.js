@@ -12,7 +12,7 @@ function Header({activeUser}) {
     setIsLoading(true);
     try {
       const a = await axios.get(
-        `http://localhost:5000/api/user/getUsers?search=${search}`,
+        `/api/user/getUsers?search=${search}`,
         {
           headers: {
             Authorization: `Bearer ${localUser?.token}`,

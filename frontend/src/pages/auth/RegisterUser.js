@@ -15,7 +15,7 @@ function RegisterUser() {
       console.log(user.password);
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/user/signup",
+        "/api/user/signup",
         {
           name: user.name,
           email: user.email,

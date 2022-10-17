@@ -13,13 +13,10 @@ function Login() {
       console.log(user.email);
       console.log(user.password);
 
-      const { data } = await axios.post(
-        "http://localhost:5000/api/user/signin",
-        {
-          email: user.email,
-          password: user.password,
-        }
-      );
+      const { data } = await axios.post("/api/user/signin", {
+        email: user.email,
+        password: user.password,
+      });
       console.log(data);
       console.log(data?.data);
       localStorage.setItem("chat-api", JSON.stringify(data?.data));
