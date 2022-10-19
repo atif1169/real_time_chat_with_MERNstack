@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { localUser } from "../../../App";
+import { baseUrlApi, localUser } from "../../../App";
+import { localStorageKey } from "../../../constant/Constant";
 import header from "./header.module.css";
 
-function Header({activeUser}) {
+function Header() {
   const [search, setsearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [getUsers, setGetUsers] = useState([]);
@@ -12,7 +13,7 @@ function Header({activeUser}) {
     setIsLoading(true);
     try {
       const a = await axios.get(
-        `/api/user/getUsers?search=${search}`,
+        `${baseUrlApi}/api/user/getUsers?search=${search}`,
         {
           headers: {
             Authorization: `Bearer ${localUser?.token}`,
@@ -25,7 +26,7 @@ function Header({activeUser}) {
     } catch (err) {
       setIsLoading(false);
       console.log(err);
-      console.log(err.message);
+      return alert(err.message);
     }
   };
   useEffect(() => {
@@ -39,7 +40,7 @@ function Header({activeUser}) {
     try {
       console.log(id);
       const { data } = await axios.post(
-        "http://localhost:5000/api/chat/",
+        `${baseUrlApi}/api/chat/`,
         { userId: id },
         {
           headers: {
@@ -51,7 +52,7 @@ function Header({activeUser}) {
       console.log(data);
     } catch (err) {
       console.log(err.message);
-      alert(err.message);
+      return alert(err.message);
     }
   };
 
@@ -72,7 +73,7 @@ function Header({activeUser}) {
           <div
             className={header.logout_button}
             onClick={() => {
-              localStorage.removeItem("chat-api");
+              localStorage.removeItem(localStorageKey);
               window.location.href = "/";
             }}
           >

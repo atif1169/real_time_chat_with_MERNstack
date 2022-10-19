@@ -5,6 +5,9 @@ import Login from "./pages/auth/Login";
 import RegisterUser from "./pages/auth/RegisterUser";
 
 export const localUser = JSON.parse(localStorage.getItem("chat-api"));
+export const baseUrlApi =
+  "https://corsproxyapi.herokuapp.com/https://real-time-chat-mongodb.herokuapp.com";
+
 function App() {
   const authUser = localUser;
 
@@ -14,12 +17,12 @@ function App() {
         <Routes>
           {!authUser ? (
             <>
-              <Route path="/" element={<Login />} />
+              <Route path="/*" element={<Login />} />
               <Route path="/register" element={<RegisterUser />} />
             </>
           ) : (
             <>
-              <Route path="/" element={<Chat />} />
+              <Route path="/*" element={<Chat />} />
               <Route path="/chat" element={<Chat />} />
             </>
           )}

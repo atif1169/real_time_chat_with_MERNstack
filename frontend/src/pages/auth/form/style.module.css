@@ -1,0 +1,61 @@
+.main {
+    padding-top: 10%;
+}
+
+.mainDiv {
+    background-color: white;
+    width: 20%;
+    height: 300px;
+    min-width: 200px;
+    padding: 0px 50px 50px 50px;
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.mainDiv:hover {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+h2 {
+    color: green;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    outline-color: green;
+    color: green;
+    border-radius: 20px;
+    background-color: #cfcfcf;
+    letter-spacing: 2.5px;
+    font-size: 15px;
+    border: 0px;
+    padding-left: 10px;
+}
+
+input:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.button {
+    padding: 10px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: #B7F655;
+    letter-spacing: 2.5px;
+    font-size: 15px;
+    font-weight: bold;
+    color: green;
+    border: 0px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button:hover {
+    color: gray;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}

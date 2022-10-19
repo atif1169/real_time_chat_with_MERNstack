@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { localUser } from "../../../App";
-import "./sidebar.css";
+import { baseUrlApi, localUser } from "../../../App";
+import { localStorageKey } from "../../../constant/Constant";
+import style from "./sidebar.module.css";
 
 function Sidebar({ setActiveUser, active }) {
   const [searchText, setsearchText] = useState("");
@@ -9,7 +10,7 @@ function Sidebar({ setActiveUser, active }) {
 
   const fetchData = async () => {
     try {
-      const a = await axios.get("/api/chat/", {
+      const a = await axios.get(`${baseUrlApi}/api/chat/`, {
         headers: {
           Authorization: `Bearer ${localUser?.token}`,
         },
@@ -28,11 +29,11 @@ function Sidebar({ setActiveUser, active }) {
   }, []);
 
   return (
-    <div className="sidebar_main">
+    <div className={style.sidebar_main}>
       {/* Search user */}
       <center>
         <input
-          className="sidebar_search"
+          className={style.sidebar_search}
           type="search"
           required
           placeholder="search user"
@@ -42,11 +43,12 @@ function Sidebar({ setActiveUser, active }) {
       </center>
 
       {/* user listing */}
-      <ul type="none" className="sidebar_user_list_ul">
+      <ul type="none" className={style.sidebar_user_list_ul}>
         {users?.map((e) => (
-          <li className="sidebar_li" onClick={() => setActiveUser(e)}>
+          <li className={style.sidebar_li} onClick={() => setActiveUser(e)}>
+            {console.log(e)}
             <div
-              className="sidebar_user_list"
+              className={style.sidebar_user_list}
               style={{
                 backgroundColor: e._id === active && "#f9c9c9b9",
                 color: e._id === active && "#ce3ff5dc",
@@ -55,7 +57,10 @@ function Sidebar({ setActiveUser, active }) {
               <img src="https://www.w3schools.com/css/paris.jpg" alt="I" />
               <div>
                 <div>{sidebarUserName(e?.users)}</div>
-                <div>Last message</div>
+                <div className={style.lastMessage}>
+                  {e?.lastMessage?.content}
+                </div>
+                {/* <div>Last message</div> */}
               </div>
             </div>
           </li>
@@ -69,7 +74,7 @@ export default Sidebar;
 
 export const sidebarUserName = (array) => {
   const activeUserName = array?.filter(
-    (e) => e?._id !== JSON.parse(localStorage.getItem("chat-api"))._id
+    (e) => e?._id !== JSON.parse(localStorage.getItem(localStorageKey))._id
   );
   return activeUserName[0]?.name;
 };

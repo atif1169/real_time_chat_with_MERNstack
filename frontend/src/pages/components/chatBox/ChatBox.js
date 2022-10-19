@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { localUser } from "../../../App";
+import { baseUrlApi, localUser } from "../../../App";
 import ChatBoxHeader from "../../../component/chatBoxHeader/ChatBoxHeader";
 import ChatFooter from "../../../component/chatFooter/ChatFooter";
 import ChatHistory from "../../../component/chatHistory/ChatHistory";
 import styleChat from "./styleChat.module.css";
 import io from "socket.io-client";
+import { localStorageKey } from "../../../constant/Constant";
 
 // const ENDPOINT = "http://localhost:5000";
 const ENDPOINT = "https://real-time-chat-mongodb.herokuapp.com/";
@@ -26,7 +27,7 @@ function ChatBox({ activeUser, active }) {
   // fetch messages function
   const fetchData = async () => {
     try {
-      const a = await axios.get(`/api/message/${active}`, {
+      const a = await axios.get(`${baseUrlApi}/api/message/${active}`, {
         headers: {
           Authorization: `Bearer ${localUser?.token}`,
         },
@@ -67,7 +68,7 @@ function ChatBox({ activeUser, active }) {
       const { data } =
         messageTxt &&
         (await axios.post(
-          `/api/message/`,
+          `${baseUrlApi}/api/message/`,
           { chatId: active, content: messageTxt },
           {
             headers: {
@@ -86,7 +87,7 @@ function ChatBox({ activeUser, active }) {
   };
 
   const activeUserName = activeUser?.users?.filter(
-    (e) => e?._id !== JSON.parse(localStorage.getItem("chat-api"))._id
+    (e) => e?._id !== JSON.parse(localStorage.getItem(localStorageKey))._id
   );
 
   return (

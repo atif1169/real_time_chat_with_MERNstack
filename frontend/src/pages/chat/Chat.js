@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/header/Header";
 import ChatBox from "../components/chatBox/ChatBox";
@@ -11,8 +10,7 @@ function Chat() {
   const [activeUser, setActiveUser] = useState({});
   let active = activeUser?._id;
 
-  console.log(active);
-
+  // console.log(active);
   return (
     <div>
       <Header />
