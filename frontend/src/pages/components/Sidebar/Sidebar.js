@@ -32,6 +32,17 @@ function Sidebar({ setActiveUser, active }) {
     <div className={style.sidebar_main}>
       {/* Search user */}
       <center>
+        <div className={style.localUser}>
+          <img
+            // src="https://www.w3schools.com/css/paris.jpg"
+            src={localUser?.pic}
+            alt="P"
+            className={style.localUser_profile}
+          />
+          <div className={style.localUser_name}>{localUser?.name}</div>
+          <div className={style.localUser_email}>{localUser?.email}</div>
+        </div>
+
         <input
           className={style.sidebar_search}
           type="search"

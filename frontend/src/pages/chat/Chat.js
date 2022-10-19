@@ -12,11 +12,28 @@ function Chat() {
 
   // console.log(active);
   return (
-    <div>
-      <Header />
-      <div style={{ display: "flex", flexDirection: "row", height: "87vh" }}>
+    <div style={{ width: "100%", height: "100vh" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          height: "100%",
+          width: "100%",
+        }}
+      >
         <Sidebar setActiveUser={setActiveUser} active={active} />
-        <ChatBox activeUser={activeUser} active={active} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <Header />
+          <ChatBox activeUser={activeUser} active={active} />
+        </div>
       </div>
     </div>
   );
