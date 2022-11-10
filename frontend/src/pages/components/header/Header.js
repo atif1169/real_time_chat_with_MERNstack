@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { baseUrlApi, localUser } from "../../../App";
+import ConfirmBox from "../../../component/alert/ConfirmBox";
 import { localStorageKey } from "../../../constant/Constant";
 import header from "./header.module.css";
 
@@ -8,6 +9,7 @@ function Header() {
   const [search, setsearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [getUsers, setGetUsers] = useState([]);
+  const [addnewUser, setAddnewUser] = useState(false);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -50,33 +52,54 @@ function Header() {
         }
       );
       console.log(data);
+      window.location.reload(false);
     } catch (err) {
       console.log(err.message);
       return alert(err.message);
     }
   };
 
+  function logoutFunc() {
+    // ConfirmBox();
+    localStorage.removeItem(localStorageKey);
+    window.location.href = "/";
+  }
+
   return (
     <>
       <div className={header.main}>
         <div className={header.main_box}>
           <div>
-            <input
-              className={header.header_search}
-              type="search"
-              required
-              placeholder="search user"
-              // value={searchText}
-              onChange={(e) => setsearch(e.target.value)}
-            />
+            {addnewUser ? (
+              <div>
+                <input
+                  className={header.header_search}
+                  type="search"
+                  required
+                  placeholder="add user"
+                  // value={searchText}
+                  onChange={(e) => setsearch(e.target.value)}
+                />
+                <b
+                  className={header.crossIcon}
+                  onClick={() => {
+                    setsearch("");
+                    setAddnewUser(false);
+                  }}
+                >
+                  X
+                </b>
+              </div>
+            ) : (
+              <div
+                className={header.plusIcon}
+                onClick={() => setAddnewUser(true)}
+              >
+                +
+              </div>
+            )}
           </div>
-          <div
-            className={header.logout_button}
-            onClick={() => {
-              localStorage.removeItem(localStorageKey);
-              window.location.href = "/";
-            }}
-          >
+          <div className={header.logout_button} onClick={() => logoutFunc()}>
             Logout
           </div>
         </div>

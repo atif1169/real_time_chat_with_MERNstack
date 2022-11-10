@@ -4,6 +4,19 @@ import { baseUrlApi, localUser } from "../../../App";
 import { localStorageKey } from "../../../constant/Constant";
 import style from "./sidebar.module.css";
 
+const searchLocalUser = (searchText, users) => {
+  if (searchText) {
+    return users.filter(
+      (item) =>
+        item &&
+        sidebarUserName(item.users)
+          .toLowerCase()
+          .includes(searchText.toLowerCase())
+    );
+  }
+  return users;
+};
+
 function Sidebar({ setActiveUser, active }) {
   const [searchText, setsearchText] = useState("");
   const [users, setUsers] = useState([]);
@@ -28,13 +41,14 @@ function Sidebar({ setActiveUser, active }) {
     fetchData();
   }, []);
 
+  const filterLocalUser = searchLocalUser(searchText, users);
+
   return (
     <div className={style.sidebar_main}>
       {/* Search user */}
       <center>
         <div className={style.localUser}>
           <img
-            // src="https://www.w3schools.com/css/paris.jpg"
             src={localUser?.pic}
             alt="P"
             className={style.localUser_profile}
@@ -42,7 +56,6 @@ function Sidebar({ setActiveUser, active }) {
           <div className={style.localUser_name}>{localUser?.name}</div>
           <div className={style.localUser_email}>{localUser?.email}</div>
         </div>
-
         <input
           className={style.sidebar_search}
           type="search"
@@ -54,29 +67,29 @@ function Sidebar({ setActiveUser, active }) {
       </center>
 
       {/* user listing */}
-      <ul type="none" className={style.sidebar_user_list_ul}>
-        {users?.map((e) => (
-          <li className={style.sidebar_li} onClick={() => setActiveUser(e)}>
-            {console.log(e)}
-            <div
-              className={style.sidebar_user_list}
-              style={{
-                backgroundColor: e._id === active && "#f9c9c9b9",
-                color: e._id === active && "#ce3ff5dc",
-              }}
-            >
-              <img src="https://www.w3schools.com/css/paris.jpg" alt="I" />
-              <div>
-                <div>{sidebarUserName(e?.users)}</div>
-                <div className={style.lastMessage}>
-                  {e?.lastMessage?.content}
-                </div>
-                {/* <div>Last message</div> */}
+      <div className={style.users_li}>
+        {filterLocalUser?.map((e) => (
+          <div
+            className={style.sidebar_user_list}
+            style={{
+              backgroundColor: e._id === active && "#f9c9c9b9",
+              color: e._id === active && "green",
+              fontWeight: e._id === active && "700",
+            }}
+            onClick={() => setActiveUser(e)}
+          >
+            <img src="https://www.w3schools.com/css/paris.jpg" alt="I" />
+            <div>
+              <div className={style.users_list_name}>
+                {sidebarUserName(e?.users)}
+              </div>
+              <div className={style.lastMessage}>
+                {e?.lastMessage?.content ?? "Start chat with this user"}
               </div>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

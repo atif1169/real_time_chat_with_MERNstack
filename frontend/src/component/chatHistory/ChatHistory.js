@@ -18,6 +18,8 @@ function ChatHistory({ messages }) {
               minWidth: "200px",
               maxWidth: "40%",
               marginTop: "5px",
+              marginLeft: e?.sender?._id == localUser?._id ? 0 : "10px",
+              marginRight: e?.sender?._id != localUser?._id ? 0 : "10px",
               borderRadius: "10px",
               padding:
                 e?.sender?._id == localUser?._id

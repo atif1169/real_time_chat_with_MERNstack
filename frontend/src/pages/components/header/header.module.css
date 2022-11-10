@@ -24,6 +24,7 @@
     font-size: 15px;
     border: 0px;
     padding-left: 10px;
+    margin-right: 10px;
 }
 
 .logout_button {
@@ -33,11 +34,39 @@
     font-weight: 700;
 }
 
+.logout_button:hover {
+    color: rgb(1, 193, 1);
+    font-size: 20px;
+}
+
+.plusIcon {
+    color: green;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.plusIcon:hover {
+    font-size: 70px;
+    color: rgb(1, 193, 1);
+    transition: 0.3s;
+}
+
+.crossIcon {
+    color: green;
+    cursor: pointer;
+}
+
+.crossIcon:hover {
+    font-size: 20px;
+    color: rgb(1, 193, 1);
+}
+
 /* for searching user  */
 .search_user {
     position: absolute;
     background-color: rgba(196, 250, 154, 0.708);
     z-index: 1;
+    margin-top: 90px;
     width: 30%;
     min-width: 250px;
 }

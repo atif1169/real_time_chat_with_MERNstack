@@ -1,16 +1,16 @@
 .sidebar_main {
     width: 30%;
-    min-width: 280px;
-    height: 100%;
+    min-width: 250px;
+    height: 91%;
     background-color: rgba(220, 220, 220, 0.704);
     border-right: 1px solid rgb(182, 182, 182);
+    padding: 30px;
 }
 
 /* ----------------------------------------------- */
 /*                 User Profile                    */
 /* ----------------------------------------------- */
 .localUser {
-    margin-top: 10%;
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(205, 204, 204, 0.65);
 }
@@ -32,6 +32,7 @@
     object-fit: cover;
     z-index: 100;
     cursor: zoom-out;
+    transition: 0.9s;
 }
 
 .localUser_name {
@@ -46,11 +47,13 @@
     font-size: 30px;
     font-weight: 900;
     cursor: no-drop;
+    transition: 0.3s;
 }
 
 .localUser_email {
     font-size: smaller;
     color: gray;
+    transition: 0.2s;
 }
 
 /* hover */
@@ -64,11 +67,8 @@
 /*                End user Profile                 */
 /* ----------------------------------------------- */
 
-
 .sidebar_search {
     padding: 10px;
-    min-width: 230px;
-    width: 70%;
     border-radius: 20px;
     background-color: #F5F5F5;
     letter-spacing: 2.5px;
@@ -76,28 +76,34 @@
     border: 0px;
     padding-left: 10px;
     margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.sidebar_li {
-    margin-top: 10px;
+.users_li {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.sidebar_li :hover {
-    cursor: pointer;
-    color: #ce3ff5dc;
-    background-color: #f9c9c9b9;
-}
 
 .sidebar_user_list {
-    min-width: 230px;
-    width: 70%;
+    width: 100%;
     height: 70px;
+    margin-top: 10px;
     background-color: #F5F5F5;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding-left: 10px;
     border-radius: 15px;
+}
+
+.sidebar_user_list:hover {
+    cursor: pointer;
+    font-weight: 700;
+    color: green;
+    background-color: #f9c9c9b9;
 }
 
 .sidebar_user_list img {
@@ -107,11 +113,29 @@
     border-radius: 50%;
 }
 
+/* hover */
+.sidebar_user_list img:hover {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    transition: 0.9s;
+}
+
 .sidebar_user_list div {
     margin-left: 10px;
+}
+
+.users_list_name:hover {
+    color: rgb(0, 255, 0);
+    font-size: 20px;
 }
 
 .lastMessage {
     font-size: 14px;
     color: green;
+}
+
+.lastMessage:hover {
+    font-size: 15px;
+    color: rgb(0, 255, 0);
 }

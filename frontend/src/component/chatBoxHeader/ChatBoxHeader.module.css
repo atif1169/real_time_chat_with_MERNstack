@@ -3,4 +3,11 @@
     padding: 10px 0px 10px 0px;
     text-align: center;
     border-bottom: 1px solid rgb(182, 182, 182);
+    color: green;
+    font-weight: bolder;
+}
+
+.main:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
